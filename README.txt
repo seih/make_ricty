@@ -1,7 +1,7 @@
-make_ricty.sh - Rictyフォントを生成する
+make_ricty - Rictyフォントを生成する
 
 Usage:
-  make_ricty.sh [command]
+  make_ricty [command]
 
 Description:
   Rictyフォントの生成に必要なファイルを取得し、通常の行間の「Ricty」と、
