@@ -60,7 +60,7 @@ command_exists() {
 }
 
 clean() {
-  log "BEGIN"
+  log 'BEGIN'
 
   rm -f "${RG}"
   rm -f "${IR}"
@@ -68,60 +68,60 @@ clean() {
   rm -f "${M1}.zip" migu-1m-bold.ttf migu-1m-regular.ttf
   rm -f ./*.ttx ./*.new ./*.new2
 
-  log "END" 
+  log 'END' 
 }
 
 prepare() {
-  log "BEGIN"
+  log 'BEGIN'
 
   command_exists unzip
   command_exists wget
   command_exists ttx
 
-  log "END"
+  log 'END'
 }
 
 get_ricty_generator() {
-  log "BEGIN"
+  log 'BEGIN'
 
   [[ ! -e "${RG}" ]] && wget https://www.rs.tus.ac.jp/yyusa/ricty/"${RG}"
   [[ ! -x "${RG}" ]] && chmod +x "${RG}"
   	
-  log "END"
+  log 'END'
 }
 
 get_inconsolata() {
-  log "BEGIN"
+  log 'BEGIN'
 
   [[ ! -e "${IR}" ]] && wget https://github.com/google/fonts/raw/master/ofl/inconsolata/"${IR}"
   [[ ! -e "${IB}" ]] && wget https://github.com/google/fonts/raw/master/ofl/inconsolata/"${IB}"
 
-  log "END"
+  log 'END'
 }
 
 get_migu-1m() {
-  log "BEGIN"
+  log 'BEGIN'
 
   if [[ ! -e "${M1}.zip" ]]; then
     wget --trust-server-names "https://ja.osdn.net/frs/redir.php?m=iij&f=mix-mplus-ipa/63545/${M1}.zip"
     unzip -j -n ${M1}.zip ${M1}/migu-1m-regular.ttf ${M1}/migu-1m-bold.ttf
   fi
 
-  log "END"
+  log 'END'
 }
 
 generate_ricty() {
-  log "BEGIN"
+  log 'BEGIN'
 
   [[ ! -e "Ricty-Regular.ttf" ]]  && ./ricty_generator.sh auto
   [[ ! -e "RictyM-Regular.ttf" ]] && ./ricty_generator.sh -w -n 'M' auto
   [[ ! -e "RictyL-Regular.ttf" ]] && ./ricty_generator.sh -W -n 'L' auto
 
-  log "END"
+  log 'END'
 }
 
 correct_spacing_and_style() {
-  log "BEGIN"
+  log 'BEGIN'
 
   local ttf_filename
   local ttx_os2_filename
@@ -175,39 +175,37 @@ correct_spacing_and_style() {
     cp --force "${ttf_filename}.new2" "${ttf_filename}"  
   done
 
-  log "END"
+  log 'END'
 }
 
 move_ttf() {
-  log "BEGIN"
+  log 'BEGIN'
 
   local ttf_filename
 
   mkdir -p ttf
-  if ls *.ttf > /dev/null 2>&1; then
-    mv -f *.ttf ttf
+  if ls ./*.ttf > /dev/null 2>&1; then
+    mv -f ./*.ttf ttf
     log "TTFファイルをttfディレクトリに移動しました。"
   else
     log "TTFファイルが存在しないため、TTFファイルをttfディレクトリに移動しませんでした。"
   fi
 
-  log "END"
+  log 'END'
 }
 
 main() {
-  log "BEGIN"
+  log 'BEGIN'
 
   prepare
   get_ricty_generator
   get_inconsolata
   get_migu-1m
-
   generate_ricty
   correct_spacing_and_style
-
   move_ttf
 
-  log "END"
+  log 'END'
 }
 
 # 主処理
