@@ -37,9 +37,7 @@ help() {
 	  move_ttf: TTFファイルをttfディレクトリに移動する。
 	EOT
   )"
-
   echo "${help}"
-  exit 0
 }
 
 log() {
@@ -181,14 +179,12 @@ correct_spacing_and_style() {
 move_ttf() {
   log 'BEGIN'
 
-  local ttf_filename
-
   mkdir -p ttf
   if ls ./*.ttf > /dev/null 2>&1; then
     mv -f ./*.ttf ttf
-    log "TTFファイルをttfディレクトリに移動しました。"
+    log 'TTFファイルをttfディレクトリに移動した。'
   else
-    log "TTFファイルが存在しないため、TTFファイルをttfディレクトリに移動しませんでした。"
+    log 'TTFファイルが存在しないため、TTFファイルをttfディレクトリに移動しなかった。'
   fi
 
   log 'END'
@@ -214,5 +210,5 @@ if (( ${#} == 0 )); then
 elif declare -f "${1}" > /dev/null; then
   "${1}"
 else
-  err "該当するコマンド「${1}」が存在しません。"
+  err "該当するコマンド「${1}」が存在しない。"
 fi
