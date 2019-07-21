@@ -34,6 +34,7 @@ help() {
 	  get_migu-1m: Migu 1Mフォントを取得する。
 	  get_ricty_generator: ricty_generator.shを取得する。
 	  help: このヘルプを表示する。
+	  move_ttf: TTFファイルをttfディレクトリに移動する。
 	EOT
   )"
 
@@ -177,6 +178,22 @@ correct_spacing_and_style() {
   log "END"
 }
 
+move_ttf() {
+  log "BEGIN"
+
+  local ttf_filename
+
+  mkdir -p ttf
+  if ls *.ttf > /dev/null 2>&1; then
+    mv -f *.ttf ttf
+    log "TTFファイルをttfディレクトリに移動しました。"
+  else
+    log "TTFファイルが存在しないため、TTFファイルをttfディレクトリに移動しませんでした。"
+  fi
+
+  log "END"
+}
+
 main() {
   log "BEGIN"
 
@@ -187,6 +204,8 @@ main() {
 
   generate_ricty
   correct_spacing_and_style
+
+  move_ttf
 
   log "END"
 }

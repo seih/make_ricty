@@ -19,3 +19,4 @@ Commands:
   get_migu-1m: Migu 1Mフォントを取得する。
   get_ricty_generator: ricty_generator.shを取得する。
   help: このヘルプを表示する。
+  move_ttf: TTFファイルをttfディレクトリに移動する。
