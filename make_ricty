@@ -34,6 +34,7 @@ help() {
 	  get_migu-1m: Migu 1Mフォントを取得する。
 	  get_ricty_generator: ricty_generator.shを取得する。
 	  help: このヘルプを表示する。
+	  make_readme: README.txtファイルを生成する。
 	  move_ttf: TTFファイルをttfディレクトリに移動する。
 	EOT
   )"
@@ -172,6 +173,14 @@ correct_spacing_and_style() {
     [[ ! -e "${ttf_filename}.new2" ]] && ttx -m "${ttf_filename}.new" -o "${ttf_filename}.new2" "${ttx_head_filename}"
     cp --force "${ttf_filename}.new2" "${ttf_filename}"  
   done
+
+  log 'END'
+}
+
+make_readme() {
+  log 'BEGIN'
+
+  ${0} help >| README.txt
 
   log 'END'
 }
