@@ -111,9 +111,9 @@ get_migu-1m() {
 generate_ricty() {
   log 'BEGIN'
 
-  [[ ! -e "Ricty-Regular.ttf" ]]  && ./ricty_generator.sh auto
-  [[ ! -e "RictyM-Regular.ttf" ]] && ./ricty_generator.sh -w -n 'M' auto
-  [[ ! -e "RictyL-Regular.ttf" ]] && ./ricty_generator.sh -W -n 'L' auto
+  ! [[ -e Ricty-Regular.ttf  || -e ttf/Ricty-Regular.ttf  ]] && ./ricty_generator.sh auto
+  ! [[ -e RictyM-Regular.ttf || -e ttf/RictyM-Regular.ttf ]] && ./ricty_generator.sh -w -n 'M' auto
+  ! [[ -e RictyL-Regular.ttf || -e ttf/RictyL-Regular.ttf ]] && ./ricty_generator.sh -W -n 'L' auto
 
   log 'END'
 }
