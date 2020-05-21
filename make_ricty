@@ -23,7 +23,7 @@ help() {
 	  行間の広い「Ricty M」と、さらに行間の広い「Ricty L」フォントを生成する。
 	  同時に字間 (xAvgCharWidth) とスタイル (fsSelection・macStyle) の情報を
 	  正す。
-	  commandを指定せず実行すると、すべての処理を適切な順番で実行する。
+	  commandを指定せず実行すると、フォントの生成に必要な処理を適切な順番で実行する。
 	  commandを指定して実行すると、指定した処理だけを実行する。
 
 	Commands:
